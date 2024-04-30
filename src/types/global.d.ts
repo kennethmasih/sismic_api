@@ -1,4 +1,4 @@
-interface WeatherData {
+interface seismicData {
   temperature: number;
   humidity: number;
   wind: number;
