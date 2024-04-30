@@ -1,25 +1,52 @@
-import { faker } from "@faker-js/faker";
+import { Request, Response } from 'express';
+import {
+  generateDublinSesmicData,
+  generateLondonSesmicData,
 
-export const generateLondonSeismicData = (): SeismicData => {
-  // Generate random Seismic data
-  const generatedSeismicData = {
-    magnitude: faker.number.int({ min: -15, max: 30 }),
-    latitude: faker.number.int({ min: 79, max: 86 }),
-    longitude: faker.number.int({ min: 2, max: 78 }),
-  };
+} from '../services/sesmicService.js';
+import { validationResult } from 'express-validator';
 
-  // Return Seismic data
-  return generatedSeismicData;
-};
+/**
+ 
+Gets the weather data for a city
+@param req the request object
+@param res the response object
+*/
+export const getSesmicData = async (req: Request, res: Response) => {
+  // We will use the validationResult function to check if there are any validation errors
+  const errors = validationResult(req);
 
-export const generateDublinSeismicData = (): SeismicData => {
-  // Generate random Seismic data
-  const generatedSeismicData: SeismicData = {
-    magnitude: faker.number.int({ min: -15, max: 30 }),
-    latitude: faker.number.int({ min: 79, max: 86 }),
-    longitude: faker.number.int({ min: 2, max: 78 }),
-  };
+  // If there are validation errors, we will log them and send a 400 status code
+  if (!errors.isEmpty()) {
+    console.error('Validation error', errors.mapped());
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
 
-  // Return Seismic data
-  return generatedSeismicData;
+  // We will use a try catch block to catch any errors
+  try {
+    // Get the city param from the request
+    const { city } = req.params;
+    console.log(city);
+
+    // We will create a variable with a type of WeatherData
+    let finalSesmicData: SesmicData;
+
+    // We will use an if statement to check which city was passed in
+    if (city === 'london') {
+      console.log(generateLondonSesmicData());
+      finalSesmicData = generateLondonSesmicData();
+    } else if (city === 'dublin') {
+      finalSesmicData = generateDublinSesmicData();
+    } else {
+      // If the city is not london or dublin, we will throw an error
+      res.status(404).send('City not found');
+    }
+
+    // We will return the weather data as JSON
+    res.status(200).json(finalSesmicData);
+  } catch (error) {
+    // If there is an error, we will log it and send a 500 status code
+    res.status(500).send('Error in fetching weather data');
+  }
 };
