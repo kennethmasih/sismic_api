@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import {
-  generateDublinSesmicData,
-  generateLondonSesmicData,
+  generateDublinSeismicData,
+  generateLondonSeismicData,
 
-} from '../services/sesmicService.js';
+} from '../services/seismicService.js';
 import { validationResult } from 'express-validator';
 
 /**
@@ -12,7 +12,7 @@ Gets the weather data for a city
 @param req the request object
 @param res the response object
 */
-export const getSesmicData = async (req: Request, res: Response) => {
+export const getSeismicData = async (req: Request, res: Response) => {
   // We will use the validationResult function to check if there are any validation errors
   const errors = validationResult(req);
 
@@ -30,21 +30,21 @@ export const getSesmicData = async (req: Request, res: Response) => {
     console.log(city);
 
     // We will create a variable with a type of WeatherData
-    let finalSesmicData: SesmicData;
+    let finalSeismicData: SeismicData;
 
     // We will use an if statement to check which city was passed in
     if (city === 'london') {
-      console.log(generateLondonSesmicData());
-      finalSesmicData = generateLondonSesmicData();
+      console.log(generateLondonSeismicData());
+      finalSeismicData = generateLondonSeismicData();
     } else if (city === 'dublin') {
-      finalSesmicData = generateDublinSesmicData();
+      finalSeismicData = generateDublinSeismicData();
     } else {
       // If the city is not london or dublin, we will throw an error
       res.status(404).send('City not found');
     }
 
     // We will return the weather data as JSON
-    res.status(200).json(finalSesmicData);
+    res.status(200).json(finalSeismicData);
   } catch (error) {
     // If there is an error, we will log it and send a 500 status code
     res.status(500).send('Error in fetching weather data');

@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker';
 
 
-export const generateLondonSesmicData = (): SesmicData => {
+export const generateLondonSeismicData = (): SeismicData => {
 
-  const generatedSesmicData = {
+  const generatedSeismicData = {
     city: "London",
 
     magnitude: faker.number.int({ min: 1, max: 30 }),
@@ -15,12 +15,12 @@ export const generateLondonSesmicData = (): SesmicData => {
 
 
 
-  return generatedSesmicData;
+  return generatedSeismicData;
 };
 
-export const generateDublinSesmicData = (): SesmicData => {
+export const generateDublinSeismicData = (): SeismicData => {
  
-  const generatedSesmicData: SesmicData = {
+  const generatedSeismicData: SeismicData = {
     city: "Dublin",
     magnitude: faker.number.int({ min: -15, max: 30 }),
     latitude: faker.number.int({ min: 79, max: 86 }),
@@ -32,6 +32,6 @@ export const generateDublinSesmicData = (): SesmicData => {
 
 
   // Return weather data
-  return generatedSesmicData;
+  return generatedSeismicData;
 };
 [10:39 PM]
