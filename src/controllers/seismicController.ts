@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import {
-  generateDublinseismicData,
-  generateLondonseismicData,
-} from "../services/seismicService.js";
+  generateDublinSeismicData,
+  generateLondonSeismicData,
+} from "../services/SeismicService.js";
 import { validationResult } from "express-validator";
 
 /**
- * Gets the weather data for a city
+ * Gets the Seismic data for a city
  * @param req the request object
  * @param res the response object
  */
-export const getseismicData = async (req: Request, res: Response) => {
+export const getSeismicData = async (req: Request, res: Response) => {
   // We will use the validationResult function to check if there are any validation errors
   const errors = validationResult(req);
 
@@ -27,24 +27,24 @@ export const getseismicData = async (req: Request, res: Response) => {
     const { city } = req.params;
     console.log(city);
 
-    // We will create a variable with a type of seismicData
-    let finalseismicData: seismicData;
+    // We will create a variable with a type of SeismicData
+    let finalSeismicData: SeismicData;
 
     // We will use an if statement to check which city was passed in
     if (city === "london") {
-      console.log(generateLondonseismicData());
-      finalseismicData = generateLondonseismicData();
+      console.log(generateLondonSeismicData());
+      finalSeismicData = generateLondonSeismicData();
     } else if (city === "dublin") {
-      finalseismicData = generateDublinseismicData();
+      finalSeismicData = generateDublinSeismicData();
     } else {
       // If the city is not london or dublin, we will throw an error
       res.status(404).send("City not found");
     }
 
-    // We will return the weather data as JSON
-    res.status(200).json(finalseismicData);
+    // We will return the Seismic data as JSON
+    res.status(200).json(finalSeismicData);
   } catch (error) {
     // If there is an error, we will log it and send a 500 status code
-    res.status(500).send("Error in fetching seismic data");
+    res.status(500).send("Error in fetching Seismic data");
   }
 };
