@@ -11,4 +11,3 @@ router.get('/:city', validateCityName, getSesmicData);
 
 // We will export the router
 export default router;
-[10:38 PM]
