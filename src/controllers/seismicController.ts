@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   generateDublinSeismicData,
   generateLondonSeismicData,
-} from "../services/SeismicService.js";
+} from "../services/seismicService.js";
 import { validationResult } from "express-validator";
 
 /**
