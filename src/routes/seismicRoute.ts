@@ -1,5 +1,5 @@
 import express from "express";
-import { getSeismicData } from "../controllers/SeismicController.js";
+import { getSeismicData } from "../controllers/seismicController.js";
 import { validateCityName } from "../middleware/validators.js";
 
 // We will create a router object
