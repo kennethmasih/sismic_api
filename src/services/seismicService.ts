@@ -6,9 +6,9 @@ export const generateLondonSeismicData = (): SeismicData => {
   const generatedSeismicData = {
     city: "London",
 
-    magnitude: faker.number.int({ min: 1, max: 30 }),
+    magnitude: faker.number.int({ min: 0.1, max: 10 }),
     latitude: faker.number.int({ min: 79, max: 86 }),
-    longitude: faker.number.int({ min: 2, max: 78 }),
+    longitude: faker.number.int({ min: 93, max: 104 }),
 
   };
 
@@ -19,9 +19,9 @@ export const generateDublinSeismicData = (): SeismicData => {
  
   const generatedSeismicData: SeismicData = {
     city: "Dublin",
-    magnitude: faker.number.int({ min: -15, max: 30 }),
+    magnitude: faker.number.int({ min: 0.1 max: 10 }),
     latitude: faker.number.int({ min: 79, max: 86 }),
-    longitude: faker.number.int({ min: 2, max: 78 }),
+    longitude: faker.number.int({ min: 93, max: 104 }),
 
   };
 
