@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { storeSeismcData } from '../helpers/helper.js';
 
 
 export const generateLondonSeismicData = (): SeismicData => {
@@ -12,6 +13,8 @@ export const generateLondonSeismicData = (): SeismicData => {
 
   };
 
+  storeSeismcData(generatedSeismicData).catch(console.error);
+
   return generatedSeismicData;
 };
 
@@ -24,6 +27,8 @@ export const generateDublinSeismicData = (): SeismicData => {
     longitude: faker.number.int({ min: 93, max: 104 }),
 
   };
+
+  storeSeismcData(generatedSeismicData).catch(console.error);
 
   // Return weather data
   return generatedSeismicData;
